@@ -1,0 +1,29 @@
+  h1 {
+
+    font-weight: bold;
+
+    text-align : center;
+
+  }
+
+  .table-bordered {
+
+    table-layout: auto;
+
+    width: 50%;
+
+    border-width: 5px;
+
+    margin: auto;
+
+    text-align: center;
+
+  }
+
+  th {
+
+    background-color: #03a678;
+
+    text-align: center;
+
+  }
