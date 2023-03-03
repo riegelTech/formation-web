@@ -1,0 +1,14 @@
+body {
+    background: #fff;
+    color: #000;
+}
+main {
+    display: flex;
+    flex-direction: row;
+}
+main > nav {
+    width: 20%;
+}
+main > section {
+    width: 80%;
+}

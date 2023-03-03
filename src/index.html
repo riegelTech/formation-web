@@ -1,56 +1,108 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+		<link rel="stylesheet" href="./style.css" />
+		<script type="application/javascript" src="./form.js"></script>
 	</head>
 	<body>
-		<div class="container-fluid">
-			<div class="row">
-				<header class="col-md-12">
-					<h1 class="text-center">Fiches animal</h1>
-				</header>
-			</div>
-			<div class="row">
-				<nav class="col-md-2">
-					<ul>
-						<li>
-							<a href="">Menu 1</a>
-						</li>
-						<li>
-							<a href="">Menu 2</a>
-						</li>
-						<li>
-							<a href="">Menu 3</a>
-						</li>
-						<li>
-							<a href="">Menu 4</a>
-						</li>
-					</ul>
-				</nav>
-				<main class="col-md-10">
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th>email</th>
-								<th>animal</th>
-								<th>age</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>test@test.test</td>
-								<td>nom</td>
-								<td>80 ans</td>
-							</tr>
-							<tr>
-								<td>foo@foo.foo</td>
-								<td>foo</td>
-								<td>20 ans</td>
-							</tr>
-						</tbody>
-					</table>
-				</main>
-			</div>
-		</div>
+		<header>
+			<h1>Fiches animal</h1>
+		</header>
+		<main>
+			<nav>
+				<ul>
+					<li>
+						<a href="">Menu 1</a>
+						<ul>
+							<li><a href="">Sous-menu 1</a></li>
+							<li>
+								<a href="">Sous-menu 2</a>
+								<ul>
+									<li><a href="">Sous-menu 1</a></li>
+									<li><a href="">Sous-menu 2</a></li>
+								</ul>
+							</li>
+							<li><a href="">Sous-menu 3</a></li>
+							<li><a href="">Sous-menu 4</a></li>
+						</ul>
+					</li>
+					<li><a href="">Menu 2</a>
+						<ul>
+							<li><a href="">Sous-menu 1</a></li>
+							<li>
+								<a href="">Sous-menu 2</a>
+								<ul>
+									<li><a href="">Sous-menu 1</a></li>
+									<li><a href="">Sous-menu 2</a></li>
+								</ul>
+							</li>
+							<li><a href="">Sous-menu 3</a></li>
+							<li><a href="">Sous-menu 4</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<section>
+				<table>
+					<thead>
+						<tr>
+							<th>email</th>
+							<th>animal</th>
+							<th>age</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><a href="">test@test.test</a></td>
+							<td>nom</td>
+							<td>80 ans</td>
+						</tr>
+						<tr>
+							<td><a href="">foo@foo.foo</a></td>
+							<td>foo</td>
+							<td>20 ans</td>
+						</tr>
+					</tbody>
+				</table>
+				<form action="./set-animal.php">
+					<fieldset>
+						<label for="animal_name">Nom</label>
+						<input type="text" value="" id="animal_name" name="animal_name" />
+					</fieldset>
+					<fieldset>
+						<label for="animal_species">Espèce</label>
+						<select name="animal_species" id="animal_species">
+							<option value="chien">Chien</option>
+							<option value="chat">Chat</option>
+							<option value="ragondin">Ragondin</option>
+						</select>
+					</fieldset>
+					<fieldset>
+						<label for="animal_age">Âge</label>
+						<input type="number" value="" id="animal_age" name="animal_age" />
+						<span>ans</span>
+					</fieldset>
+					<fieldset>
+						<label>Sexe</label>
+						<label for="animal_sex_female">Femelle</label>
+						<input type="radio" value="female" id="animal_sex_female" name="animal_sex" checked />
+						<label for="animal_sex_male">Mâle</label>
+						<input type="radio" value="male" id="animal_sex_male" name="animal_sex" />
+					</fieldset>
+					<fieldset>
+						<label for="animal_sterilized">Stérilisé</label>
+						<input type="checkbox" value="sterilized" id="animal_sterilized" name="animal_sterilized" />
+					</fieldset>
+					<fieldset>
+						<label for="comment">Commentaire</label>
+						<textarea rows="5" cols="32" name="comment" id="comment"></textarea>
+					</fieldset>
+					<fieldset>
+						<input type="submit" value="Enregistrer" />
+						<input type="button" value="Annuler" />
+					</fieldset>
+				</form>
+			</section>
+		</main>
 	</body>
 </html>
