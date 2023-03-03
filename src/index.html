@@ -4,20 +4,20 @@
 		<link rel="stylesheet" href="./style.css" />
 		<script type="application/javascript" src="./form.js"></script>
 	</head>
-	<body>
+	<body id="body" class="body">
 		<header>
 			<h1>Fiches animal</h1>
 		</header>
 		<main>
 			<nav>
-				<ul>
+				<ul class="niveau1">
 					<li>
 						<a href="">Menu 1</a>
-						<ul>
+						<ul class="niveau2">
 							<li><a href="">Sous-menu 1</a></li>
 							<li>
 								<a href="">Sous-menu 2</a>
-								<ul>
+								<ul class="niveau3">
 									<li><a href="">Sous-menu 1</a></li>
 									<li><a href="">Sous-menu 2</a></li>
 								</ul>
@@ -27,11 +27,11 @@
 						</ul>
 					</li>
 					<li><a href="">Menu 2</a>
-						<ul>
+						<ul class="niveau2">
 							<li><a href="">Sous-menu 1</a></li>
 							<li>
 								<a href="">Sous-menu 2</a>
-								<ul>
+								<ul class="niveau3">
 									<li><a href="">Sous-menu 1</a></li>
 									<li><a href="">Sous-menu 2</a></li>
 								</ul>
@@ -53,12 +53,12 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><a href="">foo@pet-company.com</a></td>
+							<td><a href="">foo@pet-company.com</a> foobar</td>
 							<td>Foo<input type="text" value="Foo" name="animal_name" /></td>
 							<td>80 ans<input type="number" value="80" name="animal_age" /></td>
 						</tr>
 						<tr>
-							<td><a href="">bar@pat-company.com</a></td>
+							<td><a href="">bar@pat-company.com</a> foo</td>
 							<td>Bar<input type="text" value="Bar" name="animal_name" /></td>
 							<td>20 ans<input type="number" value="20" name="animal_age" /></td>
 						</tr>

@@ -32,3 +32,33 @@ main > nav {
 main > section {
     width: 80%;
 }
+ul ul {
+    display: none;
+}
+li:hover ul.niveau2,
+li li:hover ul.niveau3 {
+    display: block;
+}
+thead {
+    background-color: aquamarine;
+}
+table {
+    border: 5px solid red;
+    border-collapse: collapse;
+}
+th, td {
+    border-left: 5px solid red;
+}
+td {
+    padding: 5px 10px;
+}
+tr:nth-of-type(1) td:nth-of-type(1) {
+    font-weight: bold;
+}
+td p.error {
+    font-style: italic;
+    color: hotpink;
+}
+p.error {
+    color: blueviolet;
+}
