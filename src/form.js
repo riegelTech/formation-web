@@ -37,7 +37,6 @@ function checkField(input) {
 
 function init() {
     document.querySelectorAll('input, select').forEach(input => {
-        console.log(input)
         checkField(input);
         input.addEventListener('change', () => checkField(input));
         input.addEventListener('keyup', () => checkField(input));
