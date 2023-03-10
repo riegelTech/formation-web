@@ -51,7 +51,8 @@ $animaux = [$animal1, $animal2, $animal3, $animal4];
 					<?php
 					if ($animaux[$i]['age'] <= 10 && $animaux[$i]['age_unit'] === 'year') {
 						$stade = 'jeune';
-					} elseif ($animaux[$i]['age'] <= 120 && $animaux[$i]['age_unit'] === 'month') { $stade = 'jeune';
+					} elseif ($animaux[$i]['age'] <= 120 && $animaux[$i]['age_unit'] === 'month') { 
+						$stade = 'jeune';
 					} else {
 						$stade = 'adulte';
 					}
