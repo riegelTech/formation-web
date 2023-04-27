@@ -12,7 +12,7 @@ function getAnimals($nbAnimauxPage,$numeroPage) {
         
         // Récupération du nombre de fiches animal totales
         // requete
-        $queryTotalFichesAnimal = "SELECT count(animal_id) AS total FROM fa.animal WHERE deleted_at IS NULL";
+        $queryTotalFichesAnimal = "SELECT count(animal_id) AS total FROM fa.animal WHERE deleted_at is null";
         
         // Execution de la requete
         $exect = mysqli_query($conn ,$queryTotalFichesAnimal);
@@ -27,7 +27,7 @@ function getAnimals($nbAnimauxPage,$numeroPage) {
         $premierElementDeLaPage = ($numeroPage - 1) * $nbAnimauxPage;
 
         // requete de la sélection des animaux paginée
-        $query = "SELECT * FROM fa.animal WHERE deleted_at IS NULL ORDER BY animal_id ASC LIMIT $premierElementDeLaPage, $nbAnimauxPage";
+        $query = "SELECT * FROM fa.animal WHERE deleted_at is null ORDER BY animal_id ASC LIMIT $premierElementDeLaPage, $nbAnimauxPage";
         
         // initialisation du tableau de résultats
         $result = array("total" => $total, "items" => []);
@@ -99,11 +99,11 @@ function updateAnimal($id, $animal){
  * @param integer Identifiant de l'animal
  * @return boolean la bonne exécution (ou non) de la requete
  */
-function SoftDeleteAnimal($id) {
+function softDeleteAnimal($animalId) {
         // On récupère la connexion à la base de données
         global $conn;
         // Requete : ajouter une date de suppression "deleted_at"
-        $query = "UPDATE fa.animal SET deleted_at = CURRENT_TIMESTAMP WHERE animal_id = $id;";
+        $query = "UPDATE fa.animal SET deleted_at = CURRENT_TIMESTAMP WHERE animal_id = $animalId;";
         // Execution de la requete
         return mysqli_query($conn, $query);
 }
