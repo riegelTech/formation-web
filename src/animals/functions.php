@@ -12,7 +12,7 @@ function getAnimals($nbAnimauxPage,$numeroPage) {
         
         // Récupération du nombre de fiches animal totales
         // requete
-        $queryTotalFichesAnimal = "SELECT count(animal_id) AS total FROM fa.animal WHERE deleted_at is null";
+        $queryTotalFichesAnimal = "SELECT count(animal_id) AS total FROM fa.animal WHERE deleted_at IS NULL";
         
         // Execution de la requete
         $exect = mysqli_query($conn ,$queryTotalFichesAnimal);
@@ -27,7 +27,7 @@ function getAnimals($nbAnimauxPage,$numeroPage) {
         $premierElementDeLaPage = ($numeroPage - 1) * $nbAnimauxPage;
 
         // requete de la sélection des animaux paginée
-        $query = "SELECT * FROM fa.animal WHERE deleted_at is null ORDER BY animal_id ASC LIMIT $premierElementDeLaPage, $nbAnimauxPage";
+        $query = "SELECT * FROM fa.animal WHERE deleted_at IS NULL ORDER BY animal_id ASC LIMIT $premierElementDeLaPage, $nbAnimauxPage";
         
         // initialisation du tableau de résultats
         $result = array("total" => $total, "items" => []);
