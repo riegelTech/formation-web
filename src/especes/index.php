@@ -12,6 +12,11 @@
             // Si espece_id est renseigné, alors on remonte l'espèce de l'animal
             $especes = getEspeces();
             echo json_encode($especes, JSON_PRETTY_PRINT);
+            break;
 
-        }
+        default:
+            // Requête invalide
+            header("HTTP/1.0 405 Method Not Allowed");
+            break;
+    }
 ?>
