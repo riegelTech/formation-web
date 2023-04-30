@@ -37,7 +37,7 @@
             $animalId = validator('animal_id', 1, null);
             $animalToUpdate = json_decode(file_get_contents("php://input"), true);
             $testUpdate = updateAnimal($animalId, $animalToUpdate);
-            if ($testAnimal === false) {
+            if ($testUpdate === false) {
                 header("HTTP/1.0 500 Internal Server Error");
             }
             
