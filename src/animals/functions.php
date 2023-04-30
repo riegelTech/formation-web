@@ -4,25 +4,54 @@
  * Récupération paginée des animaux de la base de données
  * @param integer nombre de fiche par page
  * @param integer numérotation de page
+ * @param integer|null especes
+ * @param integer|null races
  * @return array d'un tableau associatif par ligne animal (id/row)
  */
-function getAnimals($nbAnimauxPage,$numeroPage) {
+function getAnimals($nbAnimauxPage,$numeroPage, $especeId, $raceId) {
         // On récupère la connexion à la base de données
         global $conn;
-        
-        // Récupération du nombre de fiches animal totales
-        $query = "SELECT count(animal_id) AS total FROM fa.animal WHERE deleted_at IS NULL";
-        $total = $conn
-                ->query($query)
-                ->fetch(PDO::FETCH_ASSOC)["total"];
+        // on crée des filtres pour simplifier la commande + si l'espece/races sont null ou non
+        $filterEspece = "";
+        if ($especeId !== null) {
+                $filterEspece = "AND espece_id = :espece_id";
+        }
+        $filterRace = "";
+        if ($raceId !== null) {
+                $filterRace = "AND race_id = :race_id";
+        }
 
+        // Récupération du nombre de fiches animal totales qui ne sont pas supprimées avec deux filtres especes et races
+        $query = "SELECT count(animal_id) AS total FROM fa.animal WHERE deleted_at IS NULL $filterEspece $filterRace";
+        //execute la requete 
+        $sth = $conn->prepare($query);
+        //on regarde si especes et races ne sont pas nulles Bindvalue = remplace :: par la valeur qu'on veut
+        if ($especeId !== null) {
+                $sth->bindValue(':espece_id', intval($especeId), PDO::PARAM_INT);
+        }
+        if ($raceId !== null) {
+                $sth->bindValue(':race_id', intval($raceId), PDO::PARAM_INT);
+        }
+        // on execute voir si ça marche 
+        $sth->execute();
+        // on fait le total de sth en tableau associatif
+        $total = $sth->fetch(PDO::FETCH_ASSOC)["total"];
+        
         // Déterminer le premier élément de la page
         $premierElementDeLaPage = ($numeroPage - 1) * $nbAnimauxPage;
         // requete de la sélection des animaux paginée
-        $query = "SELECT * FROM fa.animal WHERE deleted_at IS NULL ORDER BY animal_id ASC LIMIT :first, :nb";
+        $query = "SELECT * FROM fa.animal WHERE deleted_at IS NULL $filterEspece $filterRace ORDER BY animal_id ASC LIMIT :first, :nb";
+        // Execution de la requette
         $sth = $conn->prepare($query);
+        //on regarde si especes et races ne sont pas nulles Bindvalue = remplace :: par la valeur qu'on veut (on le communique au PDO)
         $sth->bindValue(':first', intval($premierElementDeLaPage), PDO::PARAM_INT);
         $sth->bindValue(':nb', intval($nbAnimauxPage), PDO::PARAM_INT);
+        if ($especeId !== null) {
+                $sth->bindValue(':espece_id', intval($especeId), PDO::PARAM_INT);
+        }
+        if ($raceId !== null) {
+                $sth->bindValue(':race_id', intval($raceId), PDO::PARAM_INT);
+        }
         // Execution de la requette
         $sth->execute();
         $animals = $sth->fetchAll(PDO::FETCH_ASSOC);
