@@ -5,7 +5,7 @@
     $request_method = $_SERVER["REQUEST_METHOD"];
 
     header('Content-Type: application/json');
-
+    
     function validator($paramName, $minValue, $defaultValue) {
         if (isset($_GET[$paramName]) && is_numeric($_GET[$paramName]) && intval($_GET[$paramName], 10) > $minValue) {
             return intval($_GET[$paramName], 10);
@@ -16,10 +16,11 @@
 
     switch($request_method) {
 
-        case 'GET':
+        case 'GET':     
             // Si animal_id est renseigné alors c'est que l'on remonte 1 animal
             $animalId = validator('animal_id', 1, null);
-            if ($animalId !== null) {
+            if ($animalId !== null)
+             {
                 $animal = getAnimal($animalId);
                 echo json_encode($animal, JSON_PRETTY_PRINT);
             }
@@ -39,13 +40,13 @@
             if ($testAnimal === false) {
                 header("HTTP/1.0 500 Internal Server Error");
             }
-
+            
             break;
 
         case 'DELETE':
             $animalId = validator('animal_id', 1, null);
             if ($animalId !== null) {
-                $testDeleteAnimal = deleteAnimal($animalId);
+                $testDeleteAnimal = softDeleteAnimal($animalId);
                 if ($testDeleteAnimal === false) {
                     header("HTTP/1.0 500 Internal Server Error");
                 }
