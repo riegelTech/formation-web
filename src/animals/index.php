@@ -46,7 +46,7 @@
         case 'DELETE':
             $animalId = validator('animal_id', 1, null);
             if ($animalId !== null) {
-                $testDeleteAnimal = SoftDeleteAnimal($animalId);
+                $testDeleteAnimal = softDeleteAnimal($animalId);
                 if ($testDeleteAnimal === false) {
                     header("HTTP/1.0 500 Internal Server Error");
                 }
