@@ -7,6 +7,7 @@
     header('Content-Type: application/json');
     
     function validator($paramName, $minValue, $defaultValue) {
+        //existe est numérique et si sa convertion en entier doit être strictement supérieure à la valeur minimale qu'on attend
         if (isset($_GET[$paramName]) && is_numeric($_GET[$paramName]) && intval($_GET[$paramName], 10) > $minValue) {
             return intval($_GET[$paramName], 10);
 
@@ -19,8 +20,7 @@
         case 'GET':     
             // Si animal_id est renseigné alors c'est que l'on remonte 1 animal
             $animalId = validator('animal_id', 1, null);
-            if ($animalId !== null)
-             {
+            if ($animalId !== null) {
                 $animal = getAnimal($animalId);
                 echo json_encode($animal, JSON_PRETTY_PRINT);
             }
@@ -28,7 +28,9 @@
             else {
                 $page = validator('page', 1, 1);
                 $pageSize = validator('pageSize', 1, 42);
-                $animaux = getAnimals($pageSize, $page);
+                $especeId = validator ('espece_id',0, null);
+                $raceId = validator ('race_id', 0, null);
+                $animaux = getAnimals($pageSize, $page, $especeId, $raceId);
                 echo json_encode($animaux, JSON_PRETTY_PRINT);
             }
             break;
